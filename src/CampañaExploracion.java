@@ -1,7 +1,8 @@
 import java.util.Date;
 import java.util.List;
 
-public class CampañaExploracion {
+public class Campa�aExploracion {
+
 	private String nombre;
 
 	private Date fechaInicio;
@@ -10,16 +11,28 @@ public class CampañaExploracion {
 
 	private List<ActividadExploracion> actividades;
 
+	private String estado;
+
+	private String codigo;
+
 	public void agregarActividad() {
 
 	}
 
-	public void eliminarActividad() {
+	public void consultarActividades() {
 
 	}
 
-	public double calcularCostoTotal() {
-		return 0;
+	public void registrar() {
+
+	}
+
+	public void consultar() {
+
+	}
+
+	public void modificar() {
+
 	}
 
 }

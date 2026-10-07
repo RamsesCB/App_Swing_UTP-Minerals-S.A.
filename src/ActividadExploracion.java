@@ -2,13 +2,11 @@ import java.util.Date;
 
 public abstract class ActividadExploracion {
 
-	private int codigo;
+	private String codigo;
 
 	private Date fecha;
 
-	private Trabajador responsable;
-
-	private char estado;
+	private EstadoActividad estado;
 
 	private double costo;
 
@@ -21,6 +19,26 @@ public abstract class ActividadExploracion {
 	}
 
 	public void generarInforme() {
+
+	}
+
+	public void registrarResultado() {
+
+	}
+
+	public void registrar() {
+
+	}
+
+	public void consultar() {
+
+	}
+
+	public void cambiarEstado() {
+
+	}
+
+	public void modificar() {
 
 	}
 

@@ -6,9 +6,11 @@ public abstract class Trabajador extends ActividadExploracion {
 
 	private String apellidoMaterno;
 
-	private TipoDoc tipoDocumento;
+	private TipoDocumento tipoDocumento;
 
-	private int numDocumento;
+	private String numDocumento;
+
+	private ActividadExploracion[] actividadExploracion;
 
 	public void trabajar() {
 

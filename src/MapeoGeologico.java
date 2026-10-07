@@ -1,14 +1,20 @@
 public class MapeoGeologico extends ActividadExploracion {
 
-	private double areaMapeada;
+	private String unidadesGeologicas;
 
-	private String tipoRoca;
+	private String estructurasGeologicas;
+
+	private String caracteristicas;
 
 	public double calcularCosto() {
 		return 0;
 	}
 
 	public void generarInforme() {
+
+	}
+
+	public void registrarResultado() {
 
 	}
 
