@@ -1,3 +1,5 @@
+package model;
+
 public class TipoDocumento {
 
 	private int CE;

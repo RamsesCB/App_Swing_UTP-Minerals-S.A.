@@ -1,3 +1,5 @@
+package model;
+
 public class MuestreoGeoquimico extends ActividadExploracion {
 
 	private int cantidadMuestras;

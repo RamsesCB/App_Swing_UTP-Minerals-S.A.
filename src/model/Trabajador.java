@@ -1,3 +1,5 @@
+package model;
+
 public abstract class Trabajador extends ActividadExploracion {
 
 	private String nombre;

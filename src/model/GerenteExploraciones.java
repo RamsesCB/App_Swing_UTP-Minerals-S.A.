@@ -1,3 +1,5 @@
+package model;
+
 public class GerenteExploraciones extends Trabajador {
 
 	private String areaResponsable;

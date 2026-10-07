@@ -1,3 +1,5 @@
+package model;
+
 public class EstudioGeofisico extends ActividadExploracion {
 
 	private String tipoMedicion;

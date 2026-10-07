@@ -1,3 +1,5 @@
+package model;
+
 public class Topografo extends Trabajador {
 
 	private String equipoTopografico;

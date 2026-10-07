@@ -1,3 +1,5 @@
+package model;
+
 public class MapeoGeologico extends ActividadExploracion {
 
 	private String unidadesGeologicas;

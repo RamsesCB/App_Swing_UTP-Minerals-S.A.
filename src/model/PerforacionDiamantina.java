@@ -1,3 +1,5 @@
+package model;
+
 public class PerforacionDiamantina extends ActividadExploracion {
 
 	private double profundidadMetros;

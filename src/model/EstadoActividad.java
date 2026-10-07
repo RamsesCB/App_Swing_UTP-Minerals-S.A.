@@ -1,3 +1,5 @@
+package model;
+
 public class EstadoActividad {
 
 	private int PLANIFICADA;
