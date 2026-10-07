@@ -1,7 +1,7 @@
 import java.util.Date;
 import java.util.List;
 
-public class CampañaExploracion {
+public class CampaniaExploracion {
 
 	private String nombre;
 

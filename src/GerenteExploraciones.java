@@ -4,13 +4,13 @@ public class GerenteExploraciones extends Trabajador {
 
 	private String nivelAcceso;
 
-	private CampañaExploracion campañaExploracion;
+	private CampaniaExploracion campaniaExploracion;
 
 	public void trabajar() {
 
 	}
 
-	public void consultarCampaña() {
+	public void consultarCampania() {
 
 	}
 
@@ -22,7 +22,7 @@ public class GerenteExploraciones extends Trabajador {
 
 	}
 
-	public void supervisarCampaña() {
+	public void supervisarCampania() {
 
 	}
 
