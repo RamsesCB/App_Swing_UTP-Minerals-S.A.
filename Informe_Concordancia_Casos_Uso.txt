@@ -1,0 +1,140 @@
+INFORME DE CONCORDANCIA UML — UTP MINERALS S.A.
+Fecha: 8 de octubre de 2026
+Archivo: Diagrama_Casos_Uso_Mineria.asta
+
+1. OBJETIVO Y ALCANCE
+Se modificó únicamente el modelo de casos de uso y sus cuatro vistas: general,
+planificación, ejecución y supervisión. Se conservó el modelo y el diagrama de
+clases. El modelo de clases existente es la referencia para el alcance funcional.
+La concordancia es trazabilidad entre objetivos, operaciones y asociaciones;
+los dos diagramas representan perspectivas diferentes y no deben ser idénticos.
+Un caso de uso no exige una clase con el mismo nombre.
+
+2. ACTORES Y RESPONSABILIDADES
+Gerente de Exploraciones -> GerenteExploraciones: planifica y asigna; consulta
+campañas, avance, resultados e informes; supervisa y toma decisiones.
+Topógrafo -> Topografo: realiza levantamiento y participa en estudio geofísico.
+Técnico de Campo -> TecnicoCampo: opera equipos de perforación y apoya muestreo.
+Geólogo -> Geologo: realiza mapeo y analiza muestras geoquímicas.
+Los tres especialistas registran resultados y costos de sus actividades,
+generan informes y cambian el estado de las actividades asignadas.
+El gerente también puede generar informes y cambiar estados durante supervisión.
+Estas participaciones son responsabilidades propuestas del modelo, no permisos
+implementados ni una matriz de seguridad. El diagrama no modela autenticación.
+
+3. TRAZABILIDAD DE CADA CASO DE USO
+
+CU01: Gestionar Zonas
+Zona: registrar(), consultar(), modificar().
+
+CU02: Gestionar Campaña de Exploración
+CampañaExploracion: registrar(), consultar(), modificar().
+
+CU03: Planificar Actividades de Exploración
+ActividadExploracion: registrar(), modificar(); CampañaExploracion.agregarActividad(). Precondición: campaña y zona existentes.
+
+CU04: Asignar Trabajadores a Actividades
+Asociación Trabajador (1) - ActividadExploracion (0..*). Asignar un responsable a cada actividad.
+
+CU05: Ejecutar Perforación Diamantina
+PerforacionDiamantina; TecnicoCampo.operarEquipo(), trabajar(). Incluye CU09 al registrar su ejecución.
+
+CU06: Ejecutar Levantamiento y Estudio Geofísico
+Topografo.realizarLevantamiento(), trabajar(); EstudioGeofisico. Incluye CU09 al registrar su ejecución.
+
+CU07: Realizar Mapeo Geológico
+MapeoGeologico; Geologo.trabajar(). Incluye CU09 al registrar su ejecución.
+
+CU08: Registrar Muestreo Geoquímico
+MuestreoGeoquimico; Geologo.analizarMuestras(), TecnicoCampo.trabajar(). Incluye CU09.
+
+CU09: Registrar Resultados y Calcular Costos
+ActividadExploracion.registrarResultado(), calcularCosto() y sus implementaciones en las cuatro subclases.
+
+CU10: Consultar Avance y Supervisar Campaña
+GerenteExploraciones.consultarCampaña(), consultarAvanceActividades(), supervisarCampaña(); CampañaExploracion.consultarActividades().
+
+CU11: Generar Informe de Actividad
+ActividadExploracion.generarInforme() y sus cuatro implementaciones. No presupone PDF ni entidad Informe persistida.
+
+CU12: Tomar Decisiones de Exploración
+GerenteExploraciones.tomarDecision(). Incluye CU10 y CU15 como información necesaria para decidir.
+
+CU13: Consultar Datos de Trabajadores
+Trabajador.mostrarDatos() y atributos de identificación; TipoDocumento. Consulta, sin autenticación ni CRUD de personal.
+
+CU14: Cambiar Estado de Actividad
+ActividadExploracion.cambiarEstado(); EstadoActividad: PLANIFICADA, EN_PROCESO, FINALIZADA, CANCELADA. No presupone QA/QC.
+
+CU15: Consultar Resultados e Informes
+GerenteExploraciones.consultarResultadoInforme(); ActividadExploracion.consultar(), mostrarInformacion(). Consulta informes ya disponibles, sin generarlos obligatoriamente.
+
+4. RELACIONES ENTRE CASOS DE USO
+CU05 -> CU09 <<include>>: al registrar ejecución de perforación, se incorporan
+sus resultados y el cálculo de costo de PerforacionDiamantina.
+CU06 -> CU09 <<include>>: se reutiliza el registro/cálculo de EstudioGeofisico.
+CU07 -> CU09 <<include>>: se reutiliza el registro/cálculo de MapeoGeologico.
+CU08 -> CU09 <<include>>: se reutiliza el registro/cálculo de MuestreoGeoquimico.
+Estos includes consideran ejecución como registrar la actividad realizada en el
+sistema; no significan que el software ejecute físicamente el trabajo de campo.
+CU12 -> CU10 <<include>>: decidir requiere conocer avance y supervisión.
+CU12 -> CU15 <<include>>: decidir requiere consultar resultados e informes.
+Estas consultas se definieron como pasos obligatorios del flujo de decisión;
+la existencia de métodos por sí sola no obliga a usar include en UML.
+La flecha include parte del caso base hacia el comportamiento incluido.
+
+Las asociaciones actor-caso de uso son líneas de participación, sin orden de
+llamada ni multiplicidades de clases. Las relaciones de clases no se copian
+literalmente al diagrama de casos de uso.
+No se añadieron includes entre gestionar campaña, gestionar zona y planificar:
+una campaña o zona existente es una precondición; no hay que registrarla cada
+vez que se planifica una actividad. Tampoco asignar un trabajador es un paso
+obligatorio de toda planificación si la asignación ocurre después.
+CU11 y CU15 se mantienen separados: generar un informe y consultar uno existente
+son objetivos diferentes; consultar no exige volver a generar el informe.
+No se conservan extends: no hay un flujo opcional documentado que justifique los
+anteriores de anomalía, zona no registrada o exportación PDF.
+
+5. CAMBIOS RESPECTO DEL ORIGINAL
+CU01: se retiró Concesiones, que no tiene soporte en el modelo de clases.
+CU08: se acotó a muestreo y resultados de análisis; no se modela una gestión
+separada de ensayos de laboratorio sin soporte explícito.
+CU13: autenticación y gestión de personal se sustituyeron por consultar datos
+mediante Trabajador.mostrarDatos(); no se inventaron CRUD, usuarios o roles.
+CU14: validación automática y QA/QC se sustituyeron por cambiar estado usando
+ActividadExploracion.cambiarEstado() y el enum EstadoActividad.
+CU15: auditoría y respaldo se sustituyeron por consultar resultados e informes.
+Se retiraron los actores Administrador del Sistema y Sistema. El sistema objeto
+del modelo es el límite de los casos de uso, no su propio actor externo.
+Se conservan informes y decisiones: generarInforme(), consultarResultadoInforme()
+y tomarDecision() los respaldan. No hacen falta clases Informe o Decision solo
+para expresar estos comportamientos, si no se exige persistirlos como entidades.
+La presencia de nivelAcceso en GerenteExploraciones no basta para inferir un
+subsistema de login, cuentas, roles o autorización automática.
+
+6. CONCORDANCIA CON LA ESTRUCTURA DEL DOMINIO
+CampañaExploracion contiene 0..* actividades: CU03 usa agregarActividad().
+Una actividad se realiza en una Zona: CU01 mantiene sus datos y CU03 referencia
+una zona existente. No se modifica la asociación ni su multiplicidad.
+Trabajador (1) se asocia a ActividadExploracion (0..*): CU04 asigna un responsable
+por actividad. No se presume un equipo de múltiples responsables por actividad.
+ActividadExploracion es abstracta: las cuatro especialidades reutilizan registro,
+costo e informe y tienen implementaciones específicas. Las clases abstractas
+no se convierten automáticamente en actores o casos de uso adicionales.
+TipoDocumento describe identificación del trabajador, no autenticación.
+EstadoActividad delimita los valores de CU14; el diagrama de clases no define
+por sí mismo las transiciones permitidas, por lo que no se inventaron reglas.
+
+7. ORGANIZACIÓN VISUAL Y COMPROBACIONES
+Se conservaron las cuatro vistas con casos compartidos y nombres consistentes.
+Se ampliaron las elipses, agruparon objetivos por área y trazaron asociaciones e
+includes por los márgenes con recorridos ortogonales. Los actores están fuera
+del límite visual del sistema. Las vistas de detalle muestran un subconjunto
+de las relaciones del diagrama general para facilitar su lectura.
+Resultado: 15 casos de uso, 4 actores, 24 asociaciones y 6 includes.
+La API oficial de Astah validó el proyecto y guardó una copia nativa .asta.
+Se compararon identificadores, nombres, definiciones del paquete de dominio y
+presentaciones del diagrama de clases antes/después: permanecieron iguales.
+La exportación visual mediante exportImage no está disponible en la API externa
+(no-plugin); no se certifica una inspección visual del renderizado ni ejecución
+del programa Java. La validación realizada es del modelo UML y su estructura.
