@@ -1,14 +1,22 @@
+package model;
+
 public class EstudioGeofisico extends ActividadExploracion {
 
-	private String tipoEstudio;
+	private String tipoMedicion;
 
-	private double areaEvaluada;
+	private String mediciones;
+
+	private String anomalias;
 
 	public double calcularCosto() {
 		return 0;
 	}
 
 	public void generarInforme() {
+
+	}
+
+	public void registrarResultado() {
 
 	}
 

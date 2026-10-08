@@ -1,3 +1,5 @@
+package model;
+
 public class TecnicoCampo extends Trabajador {
 
 	private int experiencia;
