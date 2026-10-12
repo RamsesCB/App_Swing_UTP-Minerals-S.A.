@@ -1,3 +1,6 @@
+
+import Modelo.ActividadExploracion;
+
 public class MuestreoGeoquimico extends ActividadExploracion {
 
 	private int cantidadMuestras;

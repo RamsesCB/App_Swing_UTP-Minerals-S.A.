@@ -1,0 +1,5 @@
+usuario,clave,rol,nombre,apellidoPaterno,apellidoMaterno,tipoDocumento,numDocumento
+gerente,admin123,GERENTE,Carlos,Mendoza,Rios,DNI,10293847
+geologo,geo123,GEOLOGO,Ana,Torres,Vargas,DNI,45678912
+topografo,topo123,TOPOGRAFO,Luis,Salazar,Castro,DNI,78912345
+tecnico,tec123,TECNICO_CAMPO,Pedro,Ramos,Flores,DNI,32165498

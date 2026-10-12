@@ -1,3 +1,6 @@
+
+import Modelo.ActividadExploracion;
+
 public class EstudioGeofisico extends ActividadExploracion {
 
 	private String tipoEstudio;

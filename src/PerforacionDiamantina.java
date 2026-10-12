@@ -1,3 +1,6 @@
+
+import Modelo.ActividadExploracion;
+
 public class PerforacionDiamantina extends ActividadExploracion {
 
 	private double profundidadMetros;

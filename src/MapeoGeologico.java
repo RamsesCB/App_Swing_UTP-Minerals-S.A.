@@ -1,3 +1,6 @@
+
+import Modelo.ActividadExploracion;
+
 public class MapeoGeologico extends ActividadExploracion {
 
 	private double areaMapeada;
