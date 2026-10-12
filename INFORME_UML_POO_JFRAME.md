@@ -160,7 +160,7 @@ Los importes son ejemplos para demostrar `calcularCosto()`; no representan tarif
 5. Pulsar **Run Project**. `nbproject/project.properties` ya establece `main.class=VentanaPrincipal`.
 6. Crear zona, campaña, trabajador, actividad y luego registrar resultado y abrir Supervisión.
 
-El proyecto continúa siendo **Ant / NetBeans**, no se migró a Maven. El `JFrame` se diseñó directamente en Java Swing y se edita como código en NetBeans; no se necesita un archivo `.form` del diseñador Matisse para compilar o reproducirlo.
+El proyecto continúa siendo **Ant / NetBeans**, no se migró a Maven. La interfaz se convirtió en un **JFrame Form nativo de NetBeans GUI Builder/Matisse**. Los archivos src/VentanaPrincipal.java y src/VentanaPrincipal.form se mantienen juntos: se modifica lo visual en Design y la lógica POO permanece en los eventos. Continúa compilando como Swing estándar.
 
 ## 8. Verificación reproducible y límites
 
@@ -169,8 +169,16 @@ El proyecto continúa siendo **Ant / NetBeans**, no se migró a Maven. El `JFram
 - Modelo `.asta`: editado y validado con API oficial de Astah; se conservaron las cuatro vistas de casos de uso y se actualizó el diagrama de clases con `VentanaPrincipal`, métodos y cardinalidades.
 - Las pruebas anteriores se ejecutaron sobre lógica Java; las validaciones interactivas visuales completas de cada botón no están automatizadas.
 - No hay base de datos, autenticación, registro de auditoría, roles técnicos reales ni informes PDF; están fuera del modelo actual.
-- El código fuente Java se dejó **sin comentarios** para cumplir la petición; este Markdown contiene toda la explicación para la exposición.
+- No hay comentarios explicativos en el código Java. Se conservan únicamente los cuatro marcadores técnicos obligatorios del GUI Builder (GEN-BEGIN / GEN-END), necesarios para que NetBeans regenere y proteja initComponents y las variables visuales. La clase no contiene imports Swing ni AWT. Este Markdown contiene la explicación para la exposición.
 
 ## 9. Guion corto para exposición
 
 «Primero creamos `Zona` y `CampañaExploracion`; luego registramos un `Trabajador` especializado. El formulario crea una de las cuatro subclases de `ActividadExploracion` y la asocia a una campaña, zona y responsable. Gracias a la herencia no duplicamos código, y gracias al polimorfismo calculamos costos y generamos informes con un solo tipo base. `EstadoActividad` y `TipoDocumento` son enumeraciones que limitan opciones válidas. Finalmente el `GerenteExploraciones` consulta el avance y los informes para tomar una decisión orientativa. Las relaciones `include` muestran subprocesos obligatorios entre casos de uso, mientras que las flechas de herencia y las asociaciones del diagrama de clases explican la estructura del código; son tipos de UML distintos y no deben confundirse».
+
+## 10. JFrame Form visual y editable en NetBeans
+
+La ventana principal ahora cuenta con dos archivos: **src/VentanaPrincipal.java** y **src/VentanaPrincipal.form**. El archivo .form guarda los componentes, propiedades, eventos y el diseño de las cuatro pestañas. Las operaciones POO están implementadas fuera del bloque autogenerado initComponents.
+
+Para modificarlo, abra VentanaPrincipal.java en NetBeans 29 y elija la pestaña **Design**. Allí puede editar las etiquetas, botones, combos, campos y pestañas visualmente. No edite el bloque generado por NetBeans; haga modificaciones a la interfaz en Design y mantenga la lógica fuera de initComponents.
+
+Se verificó que el GUI Builder de NetBeans 29 reconoce el formulario y lo muestra en Design. También se verificó su compilación con Ant, su ejecución y el funcionamiento automatizado de registros, resultados, informes y supervisión. Las opciones de costos son de demostración.

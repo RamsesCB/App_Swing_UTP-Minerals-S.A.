@@ -21,7 +21,9 @@ El archivo `Diagrama_Casos_Uso_Mineria.asta` incluye las vistas general y detall
 - `src/ActividadExploracion.java` y sus cuatro subclases: operaciones de campo, informes y costos.
 - `src/Zona.java` y `src/CampañaExploracion.java`: gestión territorial y campañas.
 - `src/TipoDocumento.java` y `src/EstadoActividad.java`: enumeraciones.
-- `src/VentanaPrincipal.java`: JFrame sencillo de cuatro pestañas, sin comentarios.
+- **src/VentanaPrincipal.java** + **src/VentanaPrincipal.form**: JFrame Form de NetBeans, cuatro pestañas editables desde **Design**.
+- El diseño se mantiene en el GUI Builder; las clases del dominio se utilizan desde los manejadores de eventos.
+- La clase visual no incluye imports de java.awt o javax.swing; los marcadores técnicos GEN-BEGIN y GEN-END son necesarios para NetBeans.
 - **`INFORME_UML_POO_JFRAME.md`**: explicación detallada de cada clase, métodos, relaciones UML, casos de uso, `include`, `extend`, composición, dependencia, herencia, interfaces y ejemplos para la exposición.
 
 Los costos son **simulaciones educativas**; el proyecto no implementa login, auditoría ni respaldo.
@@ -44,3 +46,9 @@ _JAVA_AWT_WM_NONREPARENTING=1 java -Dsun.java2d.xrender=false -Dsun.java2d.pmoff
 ```
 
 En NetBeans, si **Run Project** vuelve a mostrar una ventana blanca, inicie NetBeans desde una terminal con `_JAVA_AWT_WM_NONREPARENTING=1 netbeans`, o use directamente `./ejecutar-fedora.sh` después de compilar.
+
+## Editar con diseñador de JFrame en NetBeans
+
+Abra VentanaPrincipal.java desde Source Packages y pulse **Design** junto a **Source**. El diseñador carga VentanaPrincipal.form, permite seleccionar y modificar los componentes con el ratón, y mantiene initComponents automáticamente. No es necesario crear botones ni paneles por código manual para personalizar la interfaz.
+
+Verificado en NetBeans 29: vista Design, compilación Ant correcta y prueba de operaciones sobre Zona, CampañaExploracion, Trabajador, ActividadExploracion y GerenteExploraciones.
