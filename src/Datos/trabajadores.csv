@@ -1,0 +1,5 @@
+rol,tipoDocumento,numDocumento,nombre,apellidoPaterno,apellidoMaterno
+GERENTE,DNI,10293847,Carlos,Mendoza,Rios
+GEOLOGO,DNI,45678912,Ana,Torres,Vargas
+TOPOGRAFO,DNI,78912345,Luis,Salazar,Castro
+TECNICO_CAMPO,DNI,32165498,Pedro,Ramos,Flores

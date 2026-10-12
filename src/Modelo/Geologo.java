@@ -1,3 +1,6 @@
+package Modelo;
+
+
 public class Geologo extends Trabajador {
 
 	private String especialidad;
