@@ -1,21 +1,28 @@
-public abstract class Trabajador extends ActividadExploracion {
+public abstract class Trabajador {
+    private final String nombre;
+    private final String apellidoPaterno;
+    private final String apellidoMaterno;
+    private final TipoDocumento tipoDocumento;
+    private final String numDocumento;
 
-	private String nombre;
+    protected Trabajador(String nombre, String apellidoPaterno, String apellidoMaterno, TipoDocumento tipoDocumento, String numDocumento) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.tipoDocumento = tipoDocumento;
+        this.numDocumento = numDocumento;
+    }
 
-	private String apellidoPaterno;
+    public abstract String trabajar();
 
-	private String apellidoMaterno;
+    public String mostrarDatos() {
+        return nombre + " " + apellidoPaterno + " " + apellidoMaterno + " | " + tipoDocumento + ": " + numDocumento + " | " + getClass().getSimpleName();
+    }
 
-	private TipoDoc tipoDocumento;
+    public String getNombre() { return nombre; }
+    public String getNumDocumento() { return numDocumento; }
+    public TipoDocumento getTipoDocumento() { return tipoDocumento; }
 
-	private int numDocumento;
-
-	public void trabajar() {
-
-	}
-
-	public void mostrarDatos() {
-
-	}
-
+    @Override
+    public String toString() { return nombre + " " + apellidoPaterno + " (" + getClass().getSimpleName() + ")"; }
 }

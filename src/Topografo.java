@@ -1,15 +1,18 @@
 public class Topografo extends Trabajador {
+    private final String equipoTopografico;
+    private final double precisionEquipo;
 
-	private String equipoTopografico;
+    public Topografo(String nombre, String paterno, String materno, TipoDocumento doc, String numero, String equipo, double precision) {
+        super(nombre, paterno, materno, doc, numero);
+        this.equipoTopografico = equipo;
+        this.precisionEquipo = precision;
+    }
 
-	private double precisionEquipo;
+    @Override
+    public String trabajar() { return "Topografía con " + equipoTopografico; }
 
-	public void trabajar() {
+    public String realizarLevantamiento() { return "Topógrafo " + getNombre() + " realiza levantamiento con " + equipoTopografico; }
 
-	}
-
-	public void realizarLevantamiento() {
-
-	}
-
+    public String getEquipoTopografico() { return equipoTopografico; }
+    public double getPrecisionEquipo() { return precisionEquipo; }
 }

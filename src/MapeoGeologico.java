@@ -1,15 +1,23 @@
+import java.util.Date;
+
 public class MapeoGeologico extends ActividadExploracion {
+    private final String unidadesGeologicas;
+    private final String estructurasGeologicas;
+    private final String caracteristicas;
 
-	private double areaMapeada;
+    public MapeoGeologico(String codigo, Date fecha, Trabajador responsable, Zona zona, double costo, String unidades, String estructuras, String caracteristicas) {
+        super(codigo, fecha, responsable, zona, costo);
+        this.unidadesGeologicas = unidades;
+        this.estructurasGeologicas = estructuras;
+        this.caracteristicas = caracteristicas;
+    }
 
-	private String tipoRoca;
+    @Override
+    public double calcularCosto() { return getCosto() + 95; }
 
-	public double calcularCosto() {
-		return 0;
-	}
-
-	public void generarInforme() {
-
-	}
-
+    @Override
+    public String generarInforme() {
+        return mostrarInformacion() + "\nUnidades: " + unidadesGeologicas + " | Estructuras: " + estructurasGeologicas
+            + " | Características: " + caracteristicas;
+    }
 }
