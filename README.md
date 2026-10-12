@@ -25,3 +25,22 @@ El archivo `Diagrama_Casos_Uso_Mineria.asta` incluye las vistas general y detall
 - **`INFORME_UML_POO_JFRAME.md`**: explicación detallada de cada clase, métodos, relaciones UML, casos de uso, `include`, `extend`, composición, dependencia, herencia, interfaces y ejemplos para la exposición.
 
 Los costos son **simulaciones educativas**; el proyecto no implementa login, auditoría ni respaldo.
+
+
+## Fedora con Niri / XWayland: corregir ventana blanca
+
+En el escritorio Fedora Niri, Java Swing puede abrir una ventana completamente blanca cuando se ejecuta sin identificar el gestor de ventanas como no-reparenting. El problema también afecta a aplicaciones Swing mínimas y no significa que falten formularios.
+
+Para iniciar esta aplicación **con la interfaz visible**, use desde un terminal:
+
+```bash
+./ejecutar-fedora.sh
+```
+
+El script define `_JAVA_AWT_WM_NONREPARENTING=1` antes de iniciar Java y desactiva las rutas gráficas que dieron problemas en la sesión comprobada. También puede ejecutar desde la terminal:
+
+```bash
+_JAVA_AWT_WM_NONREPARENTING=1 java -Dsun.java2d.xrender=false -Dsun.java2d.pmoffscreen=false -jar dist/UTPMinerals.jar
+```
+
+En NetBeans, si **Run Project** vuelve a mostrar una ventana blanca, inicie NetBeans desde una terminal con `_JAVA_AWT_WM_NONREPARENTING=1 netbeans`, o use directamente `./ejecutar-fedora.sh` después de compilar.
